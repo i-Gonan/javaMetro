@@ -15,7 +15,7 @@ public class Main {
     public static void storeLine(String API) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("찾고자하는 역명은?: ");
+        System.out.println("찾고자 하는 역명은?: ");
         String userInput = scanner.nextLine();
 
         String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + API + "/json/realtimeStationArrival/0/15/" + userInput;
