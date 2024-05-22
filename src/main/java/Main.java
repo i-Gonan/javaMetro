@@ -6,18 +6,18 @@ import okhttp3.ResponseBody;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Main { // Class name capitalized
-
+public class main {
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
 
-    public static void storeLine(String API) { // storeLine method made static
+
+    public void storeLine(String line) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("찾고자 하는 역명을 입력하시오: ");
-        String userInput = scanner.nextLine();
+        System.out.println("검색할 역명을 입력하세요: ");
+        String userInput = scanner.nextLine(); // 사용자 입력 받기
 
-        String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + API + "/json/realtimeStationArrival/0/15/" + userInput;
+        String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/"+ line + "/json/realtimeStationArrival/0/15/" + userInput;
 
         try {
             fetchData(apiUrl);
@@ -42,9 +42,10 @@ public class Main { // Class name capitalized
             }
 
             String jsonData = responseBody.string();
-            System.out.println("Response: " + jsonData);
+
+            System.out.println("응답: " + jsonData); // 응답 출력
         } catch (IOException e) {
-            System.err.println("Error occurred during API request: " + e.getMessage());
+            System.err.println("API 요청 중 오류 발생: " + e.getMessage());
             throw e;
         }
     }
