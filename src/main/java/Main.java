@@ -16,7 +16,6 @@ public class Main { // Class name capitalized
 
         System.out.println("찾고자하는 역명은? : ");
         String userInput = scanner.nextLine();
-
         String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + API + "/json/realtimeStationArrival/0/15/" + userInput;
 
         try {
