@@ -11,13 +11,13 @@ public class main {
     private static final Gson gson = new Gson();
 
 
-    public void storeLine(String line) {
+    public void storeLine(String API) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("검색할 역명을 입력하세요: ");
         String userInput = scanner.nextLine(); // 사용자 입력 받기
 
-        String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/"+ line + "/json/realtimeStationArrival/0/15/" + userInput;
+        String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/"+ API + "/json/realtimeStationArrival/0/15/" + userInput;
 
         try {
             fetchData(apiUrl);
