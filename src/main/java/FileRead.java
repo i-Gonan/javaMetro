@@ -10,10 +10,10 @@ public class FileRead {
         bufferedReader = new BufferedReader(new FileReader("src\\main\\resources\\API.txt"));
         main main = new main(); //main 인스턴스 생성
         while(true) {
-            String line = bufferedReader.readLine();
-            if(line == null)
+            String API = bufferedReader.readLine();
+            if(API == null)
                 break;
-            main.storeLine(line); // 여기서 `line` 변수를 main 클래스의 메소드에 전달
+            main.storeLine(API); // 여기서 `API` 변수를 main 클래스의 메소드에 전달
         }
         bufferedReader.close();
     }
