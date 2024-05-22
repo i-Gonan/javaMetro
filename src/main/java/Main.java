@@ -43,9 +43,9 @@ public class Main {
             }
 
             String jsonData = responseBody.string();
-            Object jsonObject = gson.fromJson(jsonData, Object.class); // JSON 데이터를 Object로 파싱
-            String prettyJson = gson.toJson(jsonObject); // Pretty print 형식으로 변환
-            System.out.println("Response: " + prettyJson); // Pretty print 된 JSON 출력
+            Object jsonObject = gson.fromJson(jsonData, Object.class);
+            String prettyJson = gson.toJson(jsonObject);
+            System.out.println("Response: " + prettyJson);
         } catch (IOException e) {
             System.err.println("Error occurred during API request: " + e.getMessage());
             throw e;
