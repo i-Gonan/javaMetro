@@ -13,7 +13,7 @@ public class FileRead {
             String line = bufferedReader.readLine();
             if(line == null)
                 break;
-            main.storeLine(line); // 여기서 `line` 변수를 DataStorage 클래스의 메소드에 전달
+            main.storeLine(line); // 여기서 `line` 변수를 main 클래스의 메소드에 전달
         }
         bufferedReader.close();
     }
