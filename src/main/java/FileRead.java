@@ -8,7 +8,7 @@ public class FileRead {
 
         BufferedReader bufferedReader;
         bufferedReader = new BufferedReader(new FileReader("src\\main\\resources\\API.txt"));
-        main main = new main(); // DataStorage 인스턴스 생성
+        main main = new main(); //main 인스턴스 생성
         while(true) {
             String line = bufferedReader.readLine();
             if(line == null)
