@@ -6,14 +6,14 @@ import okhttp3.ResponseBody;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class main {
+public class main { //메인 클래스 선언 -> http클라이언트, gson 인스턴스 생성
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
 
 
-    public void storeLine(String API) {
-        Scanner scanner = new Scanner(System.in);
-
+    public void storeLine(String API) { //storeline 메서드 -> FileRead 클래스 하위의 API 변수 넘겨받아 url 생성
+        Scanner scanner = new Scanner(System.in); //userInput 변수에 역명 입력 받기 위해 스캐너 인스턴스 생성
+        
         System.out.println("검색할 역명을 입력하세요: ");
         String userInput = scanner.nextLine(); // 사용자 입력 받기
 
@@ -41,10 +41,11 @@ public class main {
                 throw new IOException("Response body is null");
             }
 
+            //요청한 json 데이터 출력
             String jsonData = responseBody.string();
 
             System.out.println("응답: " + jsonData); // 응답 출력
-        } catch (IOException e) {
+        } catch (IOException e) { // 에러 예외처리문
             System.err.println("API 요청 중 오류 발생: " + e.getMessage());
             throw e;
         }
