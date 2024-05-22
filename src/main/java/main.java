@@ -6,24 +6,18 @@ import okhttp3.ResponseBody;
 import java.io.IOException;
 import java.util.Scanner;
 
-
-class Main {
+public class main {
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("API값을 입력하세요: ");
-        String apikey = scanner.nextLine(); // 사용자 입력 받기
-        //API값 71546e56626d64633131304745437562
+    public void storeLine(String line) {
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("검색할 역명을 입력하세요: ");
         String userInput = scanner.nextLine(); // 사용자 입력 받기
 
-
-        // 사용자 입력을 URL에 추가"
-        String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/"+ apikey + "/json/realtimeStationArrival/0/15/" + userInput; // 실제 API URL로 변경, 'query'는 예시 파라미터
+        String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/"+ line + "/json/realtimeStationArrival/0/15/" + userInput;
 
         try {
             fetchData(apiUrl);
