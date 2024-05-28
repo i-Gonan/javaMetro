@@ -3,14 +3,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import org.json.JSONArray;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Main {
+public class main {
 
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -58,7 +57,7 @@ public class Main {
             if(stationInput.equals("종료")){
                 break;
             } else {
-                System.out.print("노선명을 입력해주세요.\n(1~9호선은 숫자만, 나머지는 노선 전체 이름 입력. 예: 1, 4, 경의중앙선, GTX-A) >>> ");
+                System.out.print("노선명을 입력해주세요.\n(1~9호선은 숫자만, 나머지는 노선 숫자(이름) 입력. 예: 1, 4, 경의중앙선, GTX-A) >>> ");
                 lineInput = scanner.nextLine();
             }
 
