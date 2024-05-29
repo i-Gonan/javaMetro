@@ -1,4 +1,5 @@
 import com.google.gson.*;
+import kotlin.time.TimeSource;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -62,16 +63,18 @@ public class main {
             }
 
             String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + apiKey + "/json/realtimeStationArrival/0/25/" + stationInput;
+            metroTimestamp stnTimestamp = new metroTimestamp(stationInput, stationCode.get(lineInput)); // 찾고자 하는 역의 근처에 있는 열차들의 정보를 가진 Train 클래스의 모음인 metroTimestamp 객체 생성
 
             try {
-                getMetroData(apiUrl, lineInput, stationInput);
+                getMetroData(apiUrl, stnTimestamp);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static void getMetroData(String apiUrl, String lineName, String stnName) throws IOException {
+    public static void getMetroData(String apiUrl, metroTimestamp Timestamps) throws IOException {
+
         Request request = new Request.Builder() //요청을 보낼 객체 생성
                 .url(apiUrl)
                 .build();
@@ -104,20 +107,26 @@ public class main {
 
                 for(JsonElement tA : trainArray){
                     String Line = tA.getAsJsonObject().get("subwayId").getAsString();
-                    if(stationCode.get(lineName).equals(Line)){
-                        //System.out.println("디버깅 >>> 노선 정보가 일치합니다." + Line);
+                    if(Timestamps.getStnLine().equals(Line)){
                         String UPDOWN = tA.getAsJsonObject().get("updnLine").getAsString();
-                        //System.out.println(UPDOWN);
                         if(UPDOWN.equals("상행") || UPDOWN.equals("내선")){
                             UPList.add(tA);
-                            //System.out.println(tA);
                         } else if(UPDOWN.equals("하행") || UPDOWN.equals("외선")) {
                             DOWNList.add(tA);
-                            //System.out.println(tA);
                         }
                     } else {
                         System.out.println("디버깅 >>> 노선 정보가 일치하지 않습니다." + Line);
                     }
+                }
+
+                for(JsonElement UT : UPList){
+                    System.out.println(UT);
+                }
+
+                System.out.println("+++++구분선+++++");
+
+                for(JsonElement DT : DOWNList){
+                    System.out.println(DT);
                 }
 
                 /*
@@ -130,24 +139,28 @@ public class main {
                 경춘선, 경의중앙선, 경강선, 수인분당선, 신분당선, 우이신설선, 공항철도, GTX-A
                  */
 
-                System.out.println("********상행열차 정보를 출력합니다.********");
+                String stnName = Timestamps.getStnName();
+
+                //저장한 상행열차 정보를 출력
+                System.out.println("********" + stnName + "역 상행열차 정보를 출력합니다.********");
                 for(JsonElement up : UPList){
                     int trainID = up.getAsJsonObject().get("btrainNo").getAsInt(); //열차번호
                     String destination = up.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
                     String nowLocation = up.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
                     int arrivalTime = up.getAsJsonObject().get("barvlDt").getAsInt(); // 도착 예정 시간
-                    train newTrain = new train(trainID, destination, nowLocation, arrivalTime, stnName);
-                    newTrain.showTrain();
+                    Timestamps.addTimestamp_UP(trainID, destination, nowLocation, arrivalTime, stnName);
+                    Timestamps.showUPStamp();
                 }
 
-                System.out.println("********하행열차 정보를 출력합니다.********");
+                //저장한 하행열차 정보를 출력
+                System.out.println("********" + stnName + "역 하행열차 정보를 출력합니다.********");
                 for(JsonElement down : DOWNList){
                     int trainID = down.getAsJsonObject().get("btrainNo").getAsInt(); //열차번호
                     String destination = down.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
                     String nowLocation = down.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
                     int arrivalTime = down.getAsJsonObject().get("barvlDt").getAsInt(); // 도착 예정 시간
-                    train newTrain = new train(trainID, destination, nowLocation, arrivalTime, stnName);
-                    newTrain.showTrain();
+                    Timestamps.addTimestamp_DOWN(trainID, destination, nowLocation, arrivalTime, stnName);
+                    Timestamps.showDOWNStamp();
                 }
             } else {
                 System.out.println("디버깅 >>> 요청 수신에 실패하였습니다.");
