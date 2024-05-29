@@ -119,7 +119,7 @@ public class main {
                     }
                 }
 
-                for(JsonElement UT : UPList){
+                /*for(JsonElement UT : UPList){
                     System.out.println(UT);
                 }
 
@@ -127,7 +127,7 @@ public class main {
 
                 for(JsonElement DT : DOWNList){
                     System.out.println(DT);
-                }
+                }*/
 
                 /*
                 ! 남은 도착 시간을 초단위로 나타내주는 barvlDt 속성은 운영 주체가 서울교통공사인 노선에서는 매우 잘 나타나는데,
@@ -141,27 +141,33 @@ public class main {
 
                 String stnName = Timestamps.getStnName();
 
-                //저장한 상행열차 정보를 출력
-                System.out.println("********" + stnName + "역 상행열차 정보를 출력합니다.********");
+                //상행열차 정보 저장
                 for(JsonElement up : UPList){
                     int trainID = up.getAsJsonObject().get("btrainNo").getAsInt(); //열차번호
                     String destination = up.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
                     String nowLocation = up.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
                     int arrivalTime = up.getAsJsonObject().get("barvlDt").getAsInt(); // 도착 예정 시간
                     Timestamps.addTimestamp_UP(trainID, destination, nowLocation, arrivalTime, stnName);
-                    Timestamps.showUPStamp();
                 }
 
-                //저장한 하행열차 정보를 출력
-                System.out.println("********" + stnName + "역 하행열차 정보를 출력합니다.********");
+                //하행열차 정보 저장
                 for(JsonElement down : DOWNList){
                     int trainID = down.getAsJsonObject().get("btrainNo").getAsInt(); //열차번호
                     String destination = down.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
                     String nowLocation = down.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
                     int arrivalTime = down.getAsJsonObject().get("barvlDt").getAsInt(); // 도착 예정 시간
                     Timestamps.addTimestamp_DOWN(trainID, destination, nowLocation, arrivalTime, stnName);
-                    Timestamps.showDOWNStamp();
                 }
+
+                //저장한 상행열차 정보를 출력
+                System.out.println("********" + stnName + "역 상행열차 정보를 출력합니다.********");
+                Timestamps.showUPStamp();
+
+
+                //저장한 하행열차 정보를 출력
+                System.out.println("********" + stnName + "역 하행열차 정보를 출력합니다.********");
+                Timestamps.showDOWNStamp();
+
             } else {
                 System.out.println("디버깅 >>> 요청 수신에 실패하였습니다.");
             }
