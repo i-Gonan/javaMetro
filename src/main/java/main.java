@@ -146,7 +146,7 @@ public class main {
                     int trainID = up.getAsJsonObject().get("btrainNo").getAsInt(); //열차번호
                     String destination = up.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
                     String nowLocation = up.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
-                    int arrivalTime = up.getAsJsonObject().get("barvlDt").getAsInt(); // 도착 예정 시간
+                    String arrivalTime = up.getAsJsonObject().get("arvlMsg2").getAsString(); // 도착 예정 시간
                     Timestamps.addTimestamp_UP(trainID, destination, nowLocation, arrivalTime, stnName);
                 }
 
@@ -155,7 +155,7 @@ public class main {
                     int trainID = down.getAsJsonObject().get("btrainNo").getAsInt(); //열차번호
                     String destination = down.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
                     String nowLocation = down.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
-                    int arrivalTime = down.getAsJsonObject().get("barvlDt").getAsInt(); // 도착 예정 시간
+                    String arrivalTime = down.getAsJsonObject().get("arvlMsg2").getAsString(); // 도착 예정 시간
                     Timestamps.addTimestamp_DOWN(trainID, destination, nowLocation, arrivalTime, stnName);
                 }
 
