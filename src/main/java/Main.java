@@ -113,20 +113,8 @@ public class Main {
                         } else if(UPDOWN.equals("하행") || UPDOWN.equals("외선")) {
                             DOWNList.add(tA);
                         }
-                    } else {
-                        System.out.println("디버깅 >>> 노선 정보가 일치하지 않습니다." + Line);
                     }
                 }
-
-                /*for(JsonElement UT : UPList){
-                    System.out.println(UT);
-                }
-
-                System.out.println("+++++구분선+++++");
-
-                for(JsonElement DT : DOWNList){
-                    System.out.println(DT);
-                }*/
 
                 /*
                 ! 남은 도착 시간을 초단위로 나타내주는 barvlDt 속성은 운영 주체가 서울교통공사인 노선에서는 매우 잘 나타나는데,
@@ -146,7 +134,8 @@ public class Main {
                     String destination = up.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
                     String nowLocation = up.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
                     String arrivalTime = up.getAsJsonObject().get("arvlMsg2").getAsString(); // 도착 예정 시간
-                    Timestamps.addTimestamp_UP(trainID, destination, nowLocation, arrivalTime, stnName);
+                    String Direction = up.getAsJsonObject().get("updnLine").getAsString(); // 상행값 가져오기
+                    Timestamps.addTimestamp_UP(trainID, destination, nowLocation, arrivalTime, stnName, Direction);
                 }
 
                 //하행열차 정보 저장
@@ -155,7 +144,8 @@ public class Main {
                     String destination = down.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
                     String nowLocation = down.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
                     String arrivalTime = down.getAsJsonObject().get("arvlMsg2").getAsString(); // 도착 예정 시간
-                    Timestamps.addTimestamp_DOWN(trainID, destination, nowLocation, arrivalTime, stnName);
+                    String Direction = down.getAsJsonObject().get("updnLine").getAsString();
+                    Timestamps.addTimestamp_DOWN(trainID, destination, nowLocation, arrivalTime, stnName, Direction);
                 }
 
                 //저장한 상행열차 정보를 출력

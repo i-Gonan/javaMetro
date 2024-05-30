@@ -10,12 +10,12 @@ public class metroTimestamp {
         this.stnLine = stnLine;
     }
 
-    public void addTimestamp_UP(int tID, String dest, String nowstn, String arTime, String target){ //상행열차 시간 추가
-        timeStampList_UP.add(new train(tID, dest, nowstn, arTime, target));
+    public void addTimestamp_UP(int tID, String dest, String nowstn, String arTime, String target, String Direction){ //상행열차 시간 추가
+        timeStampList_UP.add(new train(tID, dest, nowstn, arTime, target, Direction));
     }
 
-    public void addTimestamp_DOWN(int tID, String dest, String nowstn, String arTime, String target){ //하행열차 시간 추가
-        timeStampList_DOWN.add(new train(tID, dest, nowstn, arTime, target));
+    public void addTimestamp_DOWN(int tID, String dest, String nowstn, String arTime, String target, String Direction){ //하행열차 시간 추가
+        timeStampList_DOWN.add(new train(tID, dest, nowstn, arTime, target, Direction));
     }
 
     public String getStnName(){
