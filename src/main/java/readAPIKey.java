@@ -21,22 +21,4 @@ public class readAPIKey {
             return "저장된 API를 읽는 도중 오류 발생.";
         }
     }
-
-    /*private static boolean isAPIKeyValid(String apiKey) {
-        return apiKey != null && !apiKey.trim().isEmpty();
-    }
-
-    /* public static void main(String[] args) {
-        readAPIKey readAPIKey = new readAPIKey();
-        try {
-            String apiKey = readAPIKey.getAPIKey();
-            if (apiKey != null) {
-                System.out.println("사용 가능한 API 키: " + apiKey);
-            } else {
-                System.out.println("유효한 API 키를 찾지 못했습니다.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 }
