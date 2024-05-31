@@ -51,11 +51,14 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException{
-        setStnCode();
-        String lineInput, stationInput;
-        readAPIKey getKey = new readAPIKey();
-        String apiKey = getKey.getAPIKey();
-        if (apiKey == null || apiKey.equals("저장된 공공데이터 API 키를 읽어오는 도중에 오류가 발생했습니다.")){
+        
+        setStnCode(); // 해쉬맵에 호선명:호선 코드 키 쌍을 추가.
+        
+        String lineInput, stationInput; // 호선명 / 역명을 입력받을 변수 선언
+        
+        String metroAPIKey = readAPIKey.getAPIKey();
+
+        if (metroAPIKey == null || metroAPIKey.equals("저장된 API를 읽는 도중 오류 발생.")){
             System.out.println("공공데이터 API키를 읽는 과정에서 문제가 발생하여 프로그램을 종료합니다.");
             return;
         }
@@ -70,7 +73,7 @@ public class Main {
                 lineInput = scanner.nextLine();
             }
 
-            String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + apiKey + "/json/realtimeStationArrival/0/8/" + stationInput;
+            String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + metroAPIKey + "/json/realtimeStationArrival/0/8/" + stationInput;
             // ㄴ-> 요청을 보낼 API 키 조합
             metroTimestamp stnTimestamp = new metroTimestamp(stationInput, stationCode.get(lineInput)); // 찾고자 하는 역의 근처에 있는 열차들의 정보를 가진 Train 클래스의 모음인 metroTimestamp 객체 생성
 

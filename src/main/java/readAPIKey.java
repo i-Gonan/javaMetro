@@ -3,35 +3,30 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class readAPIKey {
-    private String metroAPI;
 
-    public readAPIKey(){
-        this.metroAPI = "";
-    }
-
-    public String getAPIKey() throws IOException {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/Main/resources/API.txt"))) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                if (isAPIKeyValid(line)) {
-                    this.metroAPI = line;
-                    return this.metroAPI;
-                }
+    public static String getAPIKey() throws IOException {
+        String metroAPI;
+        
+        try (BufferedReader APIgetter = new BufferedReader(new FileReader("src/Main/resources/API.txt"))) {
+            // 파일을 읽어오기 위해서 BufferedReader 객체 생성
+            //String API; // BufferedReader는 문자열로 읽어오기 때문에 문자열 변수 선언
+            metroAPI = APIgetter.readLine();
+            if(metroAPI == null){ //API 키가 유효하지 않은 경우
+                return null;
+            } else {
+                return metroAPI;
             }
-            return null; // 유효한 API 키를 찾지 못한 경우
+            
         } catch (IOException e) {
-            return "저장된 공공데이터 API 키를 읽어오는 도중에 오류가 발생했습니다.";
+            return "저장된 API를 읽는 도중 오류 발생.";
         }
     }
 
-    private boolean isAPIKeyValid(String apiKey) {
-        // 여기에 API 키의 유효성을 검사하는 로직을 추가합니다.
-        // 예를 들어, API 키를 사용해 실제 API 호출을 시도하고 응답을 확인하는 방법이 있을 수 있습니다.
-        // 여기서는 단순히 키가 비어있지 않은지 확인하는 예시를 보여줍니다.
+    /*private static boolean isAPIKeyValid(String apiKey) {
         return apiKey != null && !apiKey.trim().isEmpty();
     }
 
-    public static void main(String[] args) {
+    /* public static void main(String[] args) {
         readAPIKey readAPIKey = new readAPIKey();
         try {
             String apiKey = readAPIKey.getAPIKey();
@@ -43,5 +38,5 @@ public class readAPIKey {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
