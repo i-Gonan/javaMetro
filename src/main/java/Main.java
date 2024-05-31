@@ -4,9 +4,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-
-    //private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    private static Map<String, String> stationCode = new HashMap<>();
+    private static Map<String, String> stationCode = new HashMap<>(); //키와 값 쌍을 저장할 맵 생성
 
     public static String getStnCode(String Type, String Code){
         // 키에 해당하는 값을 받아올건지, 값에 해당하는 키를 받아올건지 Type으로 입력받고,
