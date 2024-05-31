@@ -13,6 +13,7 @@ build/
 *.iml
 *.ipr
 out/
+!src/Main/resources/API.csv
 !src/Main/resources/API.txt
 
 !**/src/Main/**/out/
