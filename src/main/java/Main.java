@@ -52,7 +52,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
         setStnCode();
-        String lineInput = "", stationInput = "";
+        String lineInput, stationInput;
         readAPIKey getKey = new readAPIKey();
         String apiKey = getKey.getAPIKey();
         if (apiKey == null || apiKey.equals("저장된 공공데이터 API 키를 읽어오는 도중에 오류가 발생했습니다.")){
