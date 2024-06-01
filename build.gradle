@@ -3,10 +3,16 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'com.example.Main'
+mainClassName = 'Main'
 
 repositories {
     mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Version': '1.00', 'Main-Class': mainClassName;
+    }
 }
 
 dependencies {

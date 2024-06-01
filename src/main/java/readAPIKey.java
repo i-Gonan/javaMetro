@@ -18,6 +18,7 @@ public class readAPIKey {
             }
             
         } catch (IOException e) {
+            System.out.println(e);
             return "저장된 API를 읽는 도중 오류 발생.";
         }
     }

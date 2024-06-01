@@ -58,6 +58,7 @@ public class Main {
 
         if (metroAPIKey == null || metroAPIKey.equals("저장된 API를 읽는 도중 오류 발생.")){
             System.out.println("공공데이터 API키를 읽는 과정에서 문제가 발생하여 프로그램을 종료합니다.");
+            System.out.println(metroAPIKey);
             return;
         }
         Scanner scanner = new Scanner(System.in);
