@@ -1,5 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -9,25 +7,10 @@ import okhttp3.ResponseBody;
 public class searchAPI {
     private static final OkHttpClient client = new OkHttpClient();
 
-    private static int getLines(){ // API(줄바꿈으로 구분됨)가 저장된 개수를 확인하는 함수
-        int lines = 0;
 
-        try(BufferedReader getlines = new BufferedReader(new FileReader("src/mains/resources/lines.txt"))){
-            while(getlines.readLine() != null){
-                lines++;
-            }
-        } catch (IOException e) {
-            System.err.println(e);
-            return -1;
-        }
-
-        return lines;
-    }
     
-    public static String isValidAPI(String station){
-        int API_Length = getLines();
-        String[] API = new String[API_Length]; // API 키를 저장할 배열 생성
-        String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + API[0] + "/json/realtimeStationArrival/0/1/" + station;
+    public static boolean isValidAPI(String apiKey, String station){
+        String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + apiKey + "/json/realtimeStationArrival/0/1/" + station;
 
         Request rq = new Request.Builder()
                 .url(apiUrl)
@@ -45,15 +28,13 @@ public class searchAPI {
 
             String jsonData = rsBody.string();
             if(jsonData.contains("INFO-000")){
-                return API[0];
+                return true;
             } else {
-                return "다음키입력";
+                return false;
             }
         } catch (IOException e) {
             System.err.println(e);
         }
-
-        String validAPI = "";
-        return validAPI;
+        return false;
     }
 }

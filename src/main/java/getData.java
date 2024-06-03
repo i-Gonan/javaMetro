@@ -39,7 +39,7 @@ public class getData {
 
 
             if(statusCode.equals("INFO-000")){
-                System.out.println("디버깅 >>> 요청 수신에 성공하였습니다.");
+                //System.out.println("디버깅 >>> 요청 수신에 성공하였습니다.");
                 trainArray = metroobject.getAsJsonArray("realtimeArrivalList");
 
                 for(JsonElement tA : trainArray){
@@ -47,9 +47,17 @@ public class getData {
                     if(Timestamps.getStnLine().equals(Line)){
                         String UPDOWN = tA.getAsJsonObject().get("updnLine").getAsString();
                         if(UPDOWN.equals("상행") || UPDOWN.equals("내선")){
-                            UPList.add(tA);
+                            if(tA.getAsJsonObject().get("bstatnNm").getAsString().equals(tA.getAsJsonObject().get("arvlMsg3").getAsString())){
+                                //이 역에 오기 전에 종착하는 열차라면 열차 리스트에 추가하지 않고 그냥 넘어감
+                            } else {
+                                UPList.add(tA);
+                            }
                         } else if(UPDOWN.equals("하행") || UPDOWN.equals("외선")) {
-                            DOWNList.add(tA);
+                            if(tA.getAsJsonObject().get("bstatnNm").getAsString().equals(tA.getAsJsonObject().get("arvlMsg3").getAsString())){
+                                //이 역에 오기 전에 종착하는 열차라면 열차 리스트에 추가하지 않고 그냥 넘어감
+                            } else {
+                                DOWNList.add(tA);
+                            }
                         }
                     }
                 }

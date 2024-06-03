@@ -52,9 +52,9 @@ public class Main {
         
         setStnCode(); // 해쉬맵에 호선명:호선 코드 키 쌍을 추가.
         
-        String lineInput, stationInput; // 호선명 / 역명을 입력받을 변수 선언
+        String lineInput, stationInput; // 호선명과 역명을 입력받을 변수 선언
         
-        String metroAPIKey = readAPIKey.getAPIKey();
+        String metroAPIKey = readAPIKey.getAPIKey("강남"); // 서울시 지하철호선별 역별 승하차 인원 정보
 
         if (metroAPIKey == null || metroAPIKey.equals("저장된 API를 읽는 도중 오류 발생.")){
             System.out.println("공공데이터 API키를 읽는 과정에서 문제가 발생하여 프로그램을 종료합니다.");
