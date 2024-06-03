@@ -76,7 +76,7 @@ public class getData {
 
                 //상행열차 정보 저장
                 for(JsonElement up : UPList){
-                    int trainID = up.getAsJsonObject().get("btrainNo").getAsInt(); //열차번호
+                    String trainID = up.getAsJsonObject().get("btrainNo").getAsString(); //열차번호
                     String destination = up.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
                     String nowLocation = up.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
                     String arrivalTime = up.getAsJsonObject().get("arvlMsg2").getAsString(); // 도착 예정 시간
@@ -86,7 +86,7 @@ public class getData {
 
                 //하행열차 정보 저장
                 for(JsonElement down : DOWNList){
-                    int trainID = down.getAsJsonObject().get("btrainNo").getAsInt(); //열차번호
+                    String trainID = down.getAsJsonObject().get("btrainNo").getAsString(); //열차번호
                     String destination = down.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
                     String nowLocation = down.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
                     String arrivalTime = down.getAsJsonObject().get("arvlMsg2").getAsString(); // 도착 예정 시간

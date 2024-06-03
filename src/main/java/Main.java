@@ -8,8 +8,8 @@ public class Main {
 
     private static boolean isInvalidStn(String stnName){
         String[] Jinjeop = {"진접", "오남", "별내별가람"};
-        String[] Sinlim = {"관악산", "서울대벤처타운", "서원", "신림", "당곡", "보라매병원", "보라매공원", "서울지방병무청"};
-        String[] Uijeongbu = {"탑석", "송산", "어룡", "곤제", "효자", "경기도청북부청사", "새말", "동오", "의정부중앙", "흥선", "의정부시청", "경전철의정부", "범골", "회룡", "발곡"};
+        String[] Sinlim = {"관악산", "서울대벤처타운", "서원", "신림", "당곡", "보라매병원", "보라매공원", "서울지방병무청"}; // 신림선 역 중 환승역(보라매, 대방) 제외
+        String[] Uijeongbu = {"탑석", "송산", "어룡", "곤제", "효자", "경기도청북부청사", "새말", "동오", "의정부중앙", "흥선", "의정부시청", "경전철의정부", "범골", "발곡"}; // 의정부경전철 역 중 환승역(회룡) 제외
         boolean isInvalid = false;
 
         //검증 로직을 작성할 부분
@@ -77,7 +77,7 @@ public class Main {
 
         while(true){
             System.out.print("찾고자 하는 역명('역' 제외 이름만)을 입력해주세요.\n" +
-                    "진접선 구간(별내별가람 - 오남 - 진접) / 신림선 / 의정부경전철 구간은 지원되지 않습니다." +
+                    "진접선 구간(별내별가람 - 오남 - 진접) / 신림선 / 의정부경전철 구간은 지원되지 않습니다.\n" +
                     "검색을 종료하시려면 " + "[ 종료 ]" +" 를 입력해주세요. >>> ");
             stationInput = scanner.nextLine();
             /*while(stationInput.equals("진접") || stationInput.equals("별내별가람") || stationInput.equals("오남")){
