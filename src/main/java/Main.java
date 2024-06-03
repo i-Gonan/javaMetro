@@ -73,7 +73,9 @@ public class Main {
                 System.out.print("찾고자 하는 역명('역' 제외 이름만)을 입력해주세요.\n" +
                         "검색을 종료하시려면 [종료]를 입력해주세요. >>> ");
                 stationInput = scanner.nextLine();
-
+            }
+            if(stationInput.equals("종료")){
+                break;
             }
             System.out.print("노선명을 입력해주세요.\n(1~9호선은 숫자만, 나머지는 노선 이름 입력. 예: 1, 4, 경의중앙선, GTX-A) >>> ");
             lineInput = scanner.nextLine();
