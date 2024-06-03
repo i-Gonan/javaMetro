@@ -77,7 +77,7 @@ public class Main {
 
         while(true){
             System.out.print("찾고자 하는 역명('역' 제외 이름만)을 입력해주세요.\n" +
-                    "진접선 구간(별내별가람 ~ 진접) / 신림선 / 의정부경전철 구간은 지원되지 않습니다.\n" +
+                    "진접선 구간(별내별가람 ~ 진접) / 신림선 / 의정부 경전철 구간은 지원되지 않습니다.\n" +
                     "검색을 종료하시려면 " + "[ 종료 ]" +" 를 입력해주세요. >>> ");
             stationInput = scanner.nextLine();
             /*while(stationInput.equals("진접") || stationInput.equals("별내별가람") || stationInput.equals("오남")){
