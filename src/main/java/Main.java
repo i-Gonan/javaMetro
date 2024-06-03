@@ -80,7 +80,7 @@ public class Main {
             System.out.print("노선명을 입력해주세요.\n(1~9호선은 숫자만, 나머지는 노선 이름 입력. 예: 1, 4, 경의중앙선, GTX-A) >>> ");
             lineInput = scanner.nextLine();
 
-            String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + metroAPIKey + "/json/realtimeStationArrival/0/8/" + stationInput;
+            String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + metroAPIKey + "/json/realtimeStationArrival/0/16/" + stationInput;
             // ㄴ-> 요청을 보낼 API 키 조합
             metroTimestamp stnTimestamp = new metroTimestamp(stationInput, stationCode.get(lineInput)); // 찾고자 하는 역의 근처에 있는 열차들의 정보를 가진 Train 클래스의 모음인 metroTimestamp 객체 생성
 
