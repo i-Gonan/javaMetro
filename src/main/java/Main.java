@@ -6,6 +6,17 @@ import java.util.Scanner;
 public class Main {
     private static Map<String, String> stationCode = new HashMap<>(); //키와 값 쌍을 저장할 맵 생성
 
+    private static boolean isInvalidStn(String stnName){
+        String[] Jinjeop = {"진접", "오남", "별내별가람"};
+        String[] Sinlim = {"관악산", "서울대벤처타운", "서원", "신림", "당곡", "보라매병원", "보라매공원", "서울지방병무청"};
+        String[] Uijeongbu = {"탑석", "송산", "어룡", "곤제", "효자", "경기도청북부청사", "새말", "동오", "의정부중앙", "흥선", "의정부시청", "경전철의정부", "범골", "회룡", "발곡"};
+        boolean isInvalid = false;
+
+        //검증 로직을 작성할 부분
+
+        return isInvalid;
+    }
+
     public static String getStnCode(String Type, String Code){
         // 키에 해당하는 값을 받아올건지, 값에 해당하는 키를 받아올건지 Type으로 입력받고,
         // 타입에서 코드에 해당하는 값/키를 반환.
@@ -66,14 +77,15 @@ public class Main {
 
         while(true){
             System.out.print("찾고자 하는 역명('역' 제외 이름만)을 입력해주세요.\n" +
+                    "진접선 구간(별내별가람 - 오남 - 진접) / 신림선 / 의정부경전철 구간은 지원되지 않습니다." +
                     "검색을 종료하시려면 " + "[ 종료 ]" +" 를 입력해주세요. >>> ");
             stationInput = scanner.nextLine();
-            while(stationInput.equals("진접") || stationInput.equals("별내별가람") || stationInput.equals("오남")){
+            /*while(stationInput.equals("진접") || stationInput.equals("별내별가람") || stationInput.equals("오남")){
                 System.out.println("해당 역은 남양주도시공사 관할 역입니다. 이용에 불편을 드려 죄송합니다.");
                 System.out.print("찾고자 하는 역명('역' 제외 이름만)을 입력해주세요.\n" +
                         "검색을 종료하시려면 " + "[ 종료 ]" +" 를 입력해주세요. >>> ");
                 stationInput = scanner.nextLine();
-            }
+            }*/
             if(stationInput.equals("종료")){
                 break;
             }

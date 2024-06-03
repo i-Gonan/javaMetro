@@ -7,8 +7,6 @@ import okhttp3.ResponseBody;
 public class searchAPI {
     private static final OkHttpClient client = new OkHttpClient();
 
-
-    
     public static boolean isValidAPI(String apiKey, String station){
         String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + apiKey + "/json/realtimeStationArrival/0/1/" + station;
 
