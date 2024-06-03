@@ -69,7 +69,7 @@ public class Main {
                     "검색을 종료하시려면 [종료]를 입력해주세요. >>> ");
             stationInput = scanner.nextLine();
             while(stationInput.equals("진접") || stationInput.equals("별내별가람") || stationInput.equals("오남")){
-                System.out.println("해당역은 남양주도시공사 관할 역입니다. 이용에 불편을 드려 죄송합니다.");
+                System.out.println("해당 역은 남양주도시공사 관할 역입니다. 이용에 불편을 드려 죄송합니다.");
                 System.out.print("찾고자 하는 역명('역' 제외 이름만)을 입력해주세요.\n" +
                         "검색을 종료하시려면 [종료]를 입력해주세요. >>> ");
                 stationInput = scanner.nextLine();
