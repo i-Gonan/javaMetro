@@ -52,7 +52,8 @@ public class Main {
         
         setStnCode(); // 해쉬맵에 호선명:호선 코드 키 쌍을 추가.
         
-        String lineInput, stationInput; // 호선명과 역명을 입력받을 변수 선언
+        String stationInput;
+        String lineInput = "";// 호선명과 역명을 입력받을 변수 선언
         
         String metroAPIKey = readAPIKey.getAPIKey("강남"); // 서울시 지하철호선별 역별 승하차 인원 정보
 
@@ -62,15 +63,20 @@ public class Main {
             return;
         }
         Scanner scanner = new Scanner(System.in);
+
         while(true){
-            System.out.print("찾고자 하는 역명('역' 제외 이름만)을 입력해주세요.\n검색을 종료하시려면 [종료]를 입력해주세요. >>> ");
+            System.out.print("찾고자 하는 역명('역' 제외 이름만)을 입력해주세요.\n" +
+                    "검색을 종료하시려면 [종료]를 입력해주세요. >>> ");
             stationInput = scanner.nextLine();
-            if(stationInput.equals("종료")){
-                break;
-            } else {
-                System.out.print("노선명을 입력해주세요.\n(1~9호선은 숫자만, 나머지는 노선 이름 입력. 예: 1, 4, 경의중앙선, GTX-A) >>> ");
-                lineInput = scanner.nextLine();
+            while(stationInput.equals("진접") || stationInput.equals("별내별가람") || stationInput.equals("오남")){
+                System.out.println("해당역은 남양주도시공사 관할 역입니다. 이용에 불편을 드려 죄송합니다.");
+                System.out.print("찾고자 하는 역명('역' 제외 이름만)을 입력해주세요.\n" +
+                        "검색을 종료하시려면 [종료]를 입력해주세요. >>> ");
+                stationInput = scanner.nextLine();
+
             }
+            System.out.print("노선명을 입력해주세요.\n(1~9호선은 숫자만, 나머지는 노선 이름 입력. 예: 1, 4, 경의중앙선, GTX-A) >>> ");
+            lineInput = scanner.nextLine();
 
             String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + metroAPIKey + "/json/realtimeStationArrival/0/8/" + stationInput;
             // ㄴ-> 요청을 보낼 API 키 조합
