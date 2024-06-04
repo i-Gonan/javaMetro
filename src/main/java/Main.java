@@ -60,9 +60,9 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException{
-
         setStnCode(); // 해쉬맵에 호선명:호선 코드 키 쌍을 추가.
-        
+        searchStnCode.initMap(); // 역코드 탐색에 사용할 다른 해쉬맵 초기화
+        // 서로 다른 공공데이터API이기 때문에 1호선 - 01호선, 5호선 - 05호선, 경의중앙선 - 경의선, 우이신설선 - 우이신설경전철과 같이 다르게 표기되는 경우가 있어 별도 해쉬맵 생성
         String stationInput;
         String lineInput ;// 호선명과 역명을 입력받을 변수 선언
 
@@ -79,7 +79,7 @@ public class Main {
 
         while(true){
             System.out.print("찾고자 하는 역명('역' 제외 이름만)을 입력해주세요.\n" +
-                    "진접선 구간(별내별가람 ~ 진접) / 신림선 / 의정부 경전철 구간은 지원되지 않습니다.\n" +
+                    "진접선(별내별가람 ~ 진접) / 신림선 / 의정부 경전철 구간은 지원되지 않습니다.\n" +
                     "검색을 종료하시려면 " + "[ 종료 ]" +" 를 입력해주세요. >>> ");
             stationInput = scanner.nextLine();
             if(stationInput.equals("종료")){
