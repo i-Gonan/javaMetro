@@ -90,7 +90,7 @@ public class Main {
 
             String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + metroAPIKey + "/json/realtimeStationArrival/0/16/" + stationInput;
             // -> 요청을 보낼 API 키 조합
-            metroTimestamp stnTimestamp = new metroTimestamp(stationInput, stationCode.get(lineInput)); // 찾고자 하는 역의 근처에 있는 열차들의 정보를 가진 Train 클래스의 모음인 metroTimestamp 객체 생성
+            metroTimestamp stnTimestamp = new metroTimestamp(stationInput, LineNameCode.get(lineInput)); // 찾고자 하는 역의 근처에 있는 열차들의 정보를 가진 Train 클래스의 모음인 metroTimestamp 객체 생성
 
             try {
                 getData.getMetroData(apiUrl, stnTimestamp);
