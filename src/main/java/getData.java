@@ -47,22 +47,26 @@ public class getData {
                     if(Timestamps.getStnLine().equals(Line)){
                         String UPDOWN = tA.getAsJsonObject().get("updnLine").getAsString();
                         if(UPDOWN.equals("상행") || UPDOWN.equals("내선")){
-                            if(tA.getAsJsonObject().get("bstatnNm").getAsString().equals(tA.getAsJsonObject().get("arvlMsg3").getAsString())){
-                                //당역종착 열차는 포함하지 않음
+                            if((tA.getAsJsonObject().get("bstatnNm").getAsString().equals(tA.getAsJsonObject().get("arvlMsg3").getAsString())) ||
+                                    searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN)){
+                                //당역종착 & 이 역에 오기전에 종착하는 열차는 포함하지 않음
                             } else {
                                 if(UPList.size() >= 3){
-                                    //각 방향별로 최대 3개의 열차를 보여줄 것이기 때문에 3개를 넘으면 아무 작업도 하지않음
+                                    //각 방향별로 최대 3개의 열차를 보여줄 것이기 때문에 3개를 넘으면 작업 종료
+                                    break;
                                 }
                                 else {
                                     UPList.add(tA);
                                 }
                             }
                         } else if(UPDOWN.equals("하행") || UPDOWN.equals("외선")) {
-                            if(tA.getAsJsonObject().get("bstatnNm").getAsString().equals(tA.getAsJsonObject().get("arvlMsg3").getAsString())){
-                                //당역종착 열차는 포함하지 않음
+                            if((tA.getAsJsonObject().get("bstatnNm").getAsString().equals(tA.getAsJsonObject().get("arvlMsg3").getAsString())) ||
+                                    searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN)){
+                                //당역종착 & 이 역에 오기전에 종착하는 열차는 포함하지 않음
                             } else {
                                 if(DOWNList.size() >= 3){
-                                    // 역시 똑같이 아무것도 안함
+                                    // 역시 똑같이 아무것도 안하고 작업 종료
+                                    break;
                                 } else {
                                     DOWNList.add(tA);
                                 }

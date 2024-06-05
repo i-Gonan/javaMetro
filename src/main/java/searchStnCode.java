@@ -52,7 +52,7 @@ public class searchStnCode {
 
     private static String getStnCode(String stn, String Line) throws IOException{
         String metroAPI = readAPIKey.getAPIKey("강남");
-        String apiURL = "http://openAPI.seoul.go.kr:8088/" + metroAPI + "/json/SearchInfoBySubwayNameService/1/5/";
+        String apiURL = "http://openAPI.seoul.go.kr:8088/" + metroAPI + "/json/SearchInfoBySubwayNameService/1/5/" + stn;
         Request request = new Request.Builder() //요청을 보낼 객체 생성
                 .url(apiURL)
                 .build();
@@ -72,14 +72,28 @@ public class searchStnCode {
             String fullData = responseBody.string();
             if(fullData.contains("INFO-000")){
                 JsonElement JSElement = JsonParser.parseString(fullData);
-                JsonObject metroobject = JSElement.getAsJsonObject();
+                System.out.println(JSElement);
+                JsonObject metroobject = JSElement.getAsJsonObject().getAsJsonObject("SearchInfoBySubwayNameService");
+                System.out.println(metroobject);
                 stationArray = metroobject.getAsJsonArray("row");
+
+                System.out.println(stationArray);
+
+                String stnCD = "";
+
                 for(JsonElement sA : stationArray){
-                    String sALineName = sA.getAsJsonObject().get("FR_CODE").getAsString();
-                    if(sALineName.equals(LineName)){
-                        return sALineName;
+                    String stnName = sA.getAsJsonObject().get("STATION_NM").getAsString(); // 역명을 문자열로 저장
+                    String lnName = sA.getAsJsonObject().get("LINE_NUM").getAsString(); // 노선명을 문자열로 저장
+                    if(stnName.equals(stn)){
+                        stnCD = sA.getAsJsonObject().get("FR_CODE").getAsString();
+                        return stnCD;
                     }
                 }
+
+
+
+            } else {
+                System.out.println(stn + "이 잘못되었습니다. " + Line);
             }
             return null;
         }
@@ -89,16 +103,19 @@ public class searchStnCode {
         }
     }
 
-    private boolean isBeforeStn(String trainDestStn, String myStn, String Line, String type) throws IOException{
+    public static boolean isBeforeStn(String trainDestStn, String myStn, String Line, String type) throws IOException{
         // 열차의 현재 역, 내가 찾는 역, 호선을 입력값으로 가짐
+        trainDestStn = trainDestStn.split(" ")[0];
         String trainDestStnCode = getStnCode(trainDestStn, Line);
+        System.out.println("열차의 목적지 역 코드 : " + trainDestStnCode);
         String myStnCode = getStnCode(myStn, Line);
-        if(type.equals("상행")){
-
-        } else{
-
+        System.out.println("내가 찾는 역 코드 : " + myStnCode);
+        if((type.equals("상행") || type.equals("내선")) && myStnCode.compareTo(trainDestStnCode) > 0){
+            return true;
+        } else if((type.equals("하행") || type.equals("외선")) && myStnCode.compareTo(trainDestStnCode) <= 0){
+            return true;
+        }else{
+            return false;
         }
-
-        return false;
     }
 }

@@ -89,7 +89,7 @@ public class Main {
             if(stationInput.equals("종료")){
                 break;
             }
-            System.out.print("***** 노선명을 입력해주세요. *****\n" +
+            System.out.print("\n***** 노선명을 입력해주세요. *****\n" +
                     "$ 1~9호선은 숫자만, 나머지는 노선 이름 입력.\n" +
                     "$ 예시) 1, 4, 경의중앙선, GTX-A) >>> ");
             lineInput = scanner.nextLine();
