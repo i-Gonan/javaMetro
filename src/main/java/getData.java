@@ -34,8 +34,8 @@ public class getData {
             JsonObject statusObject = metroobject.getAsJsonObject("errorMessage");
             String statusCode = statusObject.get("code").getAsString();
 
-            JsonArray UPList = new JsonArray();
-            JsonArray DOWNList = new JsonArray();
+            JsonArray UPList = new JsonArray(); // 상행열차 정보를 저장할 JSON배열
+            JsonArray DOWNList = new JsonArray(); // 하행열차 정보를 저장할 JSON배열
 
 
             if(statusCode.equals("INFO-000")){
@@ -55,7 +55,6 @@ public class getData {
                                 }
                                 else {
                                     UPList.add(tA);
-                                    System.out.println(UPList.size());
                                 }
                             }
                         } else if(UPDOWN.equals("하행") || UPDOWN.equals("외선")) {
@@ -66,7 +65,6 @@ public class getData {
                                     // 역시 똑같이 아무것도 안함
                                 } else {
                                     DOWNList.add(tA);
-                                    System.out.println(DOWNList.size());
                                 }
                             }
                         }
