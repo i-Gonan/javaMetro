@@ -78,6 +78,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while(true){
+            System.out.println("***** 서울 지하철 실시간 도착정보 안내 프로그램 *****\n" +
+                    "역명을 입력하신 후에 노선을 입력해주시면 찾으시는 역의 실시간 열차 도착 정보를 상행과 하행 각각 1~3개씩 출력해 드립니다.\n");
             System.out.print("찾고자 하는 역명('역' 제외 이름만)을 입력해주세요.\n" +
                     "진접선(별내별가람 ~ 진접) / 신림선 / 의정부 경전철 구간은 지원되지 않습니다.\n" +
                     "검색을 종료하시려면 " + "[ 종료 ]" +" 를 입력해주세요. >>> ");
@@ -85,7 +87,9 @@ public class Main {
             if(stationInput.equals("종료")){
                 break;
             }
-            System.out.print("노선명을 입력해주세요.\n* 1~9호선은 숫자만, 나머지는 노선 이름 입력. * \n예시) 1, 4, 경의중앙선, GTX-A) >>> ");
+            System.out.print("***** 노선명을 입력해주세요. *****\n" +
+                    "$ 1~9호선은 숫자만, 나머지는 노선 이름 입력.\n" +
+                    "$ 예시) 1, 4, 경의중앙선, GTX-A) >>> ");
             lineInput = scanner.nextLine();
 
             String apiUrl = "http://swopenapi.seoul.go.kr/api/subway/" + metroAPIKey + "/json/realtimeStationArrival/0/16/" + stationInput;
