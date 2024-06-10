@@ -47,8 +47,8 @@ public class getData {
                     if(Timestamps.getStnLine().equals(Line)){
                         String UPDOWN = tA.getAsJsonObject().get("updnLine").getAsString();
                         if(UPDOWN.equals("상행") || UPDOWN.equals("내선")){
-                            if((tA.getAsJsonObject().get("bstatnNm").getAsString().equals(tA.getAsJsonObject().get("arvlMsg3").getAsString())) ||
-                                    searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN)){
+                            if(UPDOWN.equals("상행") &&
+                                    (searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN))){
                                 //당역종착 & 이 역에 오기전에 종착하는 열차는 포함하지 않음
                             } else {
                                 if(UPList.size() >= 3){
@@ -60,8 +60,8 @@ public class getData {
                                 }
                             }
                         } else if(UPDOWN.equals("하행") || UPDOWN.equals("외선")) {
-                            if((tA.getAsJsonObject().get("bstatnNm").getAsString().equals(tA.getAsJsonObject().get("arvlMsg3").getAsString())) ||
-                                    searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN)){
+                            if(UPDOWN.equals("하행") &&
+                                    (searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN))){
                                 //당역종착 & 이 역에 오기전에 종착하는 열차는 포함하지 않음
                             } else {
                                 if(DOWNList.size() >= 3){

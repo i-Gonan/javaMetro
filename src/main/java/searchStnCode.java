@@ -72,19 +72,15 @@ public class searchStnCode {
             String fullData = responseBody.string();
             if(fullData.contains("INFO-000")){
                 JsonElement JSElement = JsonParser.parseString(fullData);
-                System.out.println(JSElement);
                 JsonObject metroobject = JSElement.getAsJsonObject().getAsJsonObject("SearchInfoBySubwayNameService");
-                System.out.println(metroobject);
                 stationArray = metroobject.getAsJsonArray("row");
-
-                System.out.println(stationArray);
 
                 String stnCD = "";
 
                 for(JsonElement sA : stationArray){
                     String stnName = sA.getAsJsonObject().get("STATION_NM").getAsString(); // 역명을 문자열로 저장
                     String lnName = sA.getAsJsonObject().get("LINE_NUM").getAsString(); // 노선명을 문자열로 저장
-                    if(stnName.equals(stn)){
+                    if(lnName.equals(getLine(Line))){
                         stnCD = sA.getAsJsonObject().get("FR_CODE").getAsString();
                         return stnCD;
                     }
@@ -110,9 +106,9 @@ public class searchStnCode {
         System.out.println("열차의 목적지 역 코드 : " + trainDestStnCode);
         String myStnCode = getStnCode(myStn, Line);
         System.out.println("내가 찾는 역 코드 : " + myStnCode);
-        if((type.equals("상행") || type.equals("내선")) && myStnCode.compareTo(trainDestStnCode) > 0){
+        if((type.equals("상행") || type.equals("내선")) && myStnCode.compareTo(trainDestStnCode) <= 0){
             return true;
-        } else if((type.equals("하행") || type.equals("외선")) && myStnCode.compareTo(trainDestStnCode) <= 0){
+        } else if((type.equals("하행") || type.equals("외선")) && myStnCode.compareTo(trainDestStnCode) >= 0){
             return true;
         }else{
             return false;
