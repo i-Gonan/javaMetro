@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -51,6 +52,9 @@ public class searchStnCode {
     private static JsonArray stationArray = new JsonArray();
 
     private static String getStnCode(String stn, String Line) throws IOException{
+        if(stn.equals("응암순환(상선)")){
+            stn = "응암";
+        }
         String metroAPI = readAPIKey.getAPIKey("강남");
         String apiURL = "http://openAPI.seoul.go.kr:8088/" + metroAPI + "/json/SearchInfoBySubwayNameService/1/5/" + stn;
         Request request = new Request.Builder() //요청을 보낼 객체 생성
@@ -72,19 +76,15 @@ public class searchStnCode {
             String fullData = responseBody.string();
             if(fullData.contains("INFO-000")){
                 JsonElement JSElement = JsonParser.parseString(fullData);
-                System.out.println(JSElement);
                 JsonObject metroobject = JSElement.getAsJsonObject().getAsJsonObject("SearchInfoBySubwayNameService");
-                System.out.println(metroobject);
                 stationArray = metroobject.getAsJsonArray("row");
-
-                System.out.println(stationArray);
 
                 String stnCD = "";
 
                 for(JsonElement sA : stationArray){
                     String stnName = sA.getAsJsonObject().get("STATION_NM").getAsString(); // 역명을 문자열로 저장
                     String lnName = sA.getAsJsonObject().get("LINE_NUM").getAsString(); // 노선명을 문자열로 저장
-                    if(stnName.equals(stn)){
+                    if(lnName.equals(getLine(Line))){
                         stnCD = sA.getAsJsonObject().get("FR_CODE").getAsString();
                         return stnCD;
                     }
@@ -107,12 +107,10 @@ public class searchStnCode {
         // 열차의 현재 역, 내가 찾는 역, 호선을 입력값으로 가짐
         trainDestStn = trainDestStn.split(" ")[0];
         String trainDestStnCode = getStnCode(trainDestStn, Line);
-        System.out.println("열차의 목적지 역 코드 : " + trainDestStnCode);
         String myStnCode = getStnCode(myStn, Line);
-        System.out.println("내가 찾는 역 코드 : " + myStnCode);
-        if((type.equals("상행") || type.equals("내선")) && myStnCode.compareTo(trainDestStnCode) > 0){
+        if((type.equals("상행") || type.equals("내선")) && myStnCode.compareTo(Objects.requireNonNull(trainDestStnCode)) <= 0){
             return true;
-        } else if((type.equals("하행") || type.equals("외선")) && myStnCode.compareTo(trainDestStnCode) <= 0){
+        } else if((type.equals("하행") || type.equals("외선")) && myStnCode.compareTo(Objects.requireNonNull(trainDestStnCode)) >= 0){
             return true;
         }else{
             return false;

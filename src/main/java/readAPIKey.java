@@ -22,7 +22,7 @@ public class readAPIKey {
 
     public static String getAPIKey(String testStnName) throws IOException {
         String metroAPI; // BufferedReader는 문자열로 읽어오기 때문에 문자열 변수 선언
-        
+
         try (BufferedReader APIgetter = new BufferedReader(new FileReader("src/main/resources/API.txt"))) {
             // 파일을 읽어오기 위해서 BufferedReader 객체 생성
             //String API;

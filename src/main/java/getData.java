@@ -47,8 +47,8 @@ public class getData {
                     if(Timestamps.getStnLine().equals(Line)){
                         String UPDOWN = tA.getAsJsonObject().get("updnLine").getAsString();
                         if(UPDOWN.equals("상행") || UPDOWN.equals("내선")){
-                            if((tA.getAsJsonObject().get("bstatnNm").getAsString().equals(tA.getAsJsonObject().get("arvlMsg3").getAsString())) ||
-                                    searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN)){
+                            if(UPDOWN.equals("상행") &&
+                                    (searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN))){
                                 //당역종착 & 이 역에 오기전에 종착하는 열차는 포함하지 않음
                             } else {
                                 if(UPList.size() >= 3){
@@ -60,8 +60,8 @@ public class getData {
                                 }
                             }
                         } else if(UPDOWN.equals("하행") || UPDOWN.equals("외선")) {
-                            if((tA.getAsJsonObject().get("bstatnNm").getAsString().equals(tA.getAsJsonObject().get("arvlMsg3").getAsString())) ||
-                                    searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN)){
+                            if(UPDOWN.equals("하행") &&
+                                    (searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN))){
                                 //당역종착 & 이 역에 오기전에 종착하는 열차는 포함하지 않음
                             } else {
                                 if(DOWNList.size() >= 3){
@@ -91,6 +91,9 @@ public class getData {
                 for(JsonElement up : UPList){
                     String trainID = up.getAsJsonObject().get("btrainNo").getAsString(); //열차번호
                     String destination = up.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
+                    if(destination.equals("응암순환(상선)")){
+                        destination = destination.replace("(상선)", "(응암)");
+                    }
                     String nowLocation = up.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
                     String arrivalTime = up.getAsJsonObject().get("arvlMsg2").getAsString(); // 도착 예정 시간
                     String Direction = up.getAsJsonObject().get("updnLine").getAsString(); // 상행값 가져오기
@@ -108,16 +111,16 @@ public class getData {
                 }
 
                 //저장한 상행열차 정보를 출력
-                System.out.println("********" + stnName + "역 상행열차 정보를 출력합니다.********");
+                System.out.println("\n********" + stnName + "역 상행열차 정보를 출력합니다.********");
                 Timestamps.showUPStamp();
 
 
                 //저장한 하행열차 정보를 출력
-                System.out.println("********" + stnName + "역 하행열차 정보를 출력합니다.********");
+                System.out.println("\n********" + stnName + "역 하행열차 정보를 출력합니다.********");
                 Timestamps.showDOWNStamp();
 
             } else {
-                System.out.println("디버깅 >>> 요청 수신에 실패하였습니다.");
+                System.out.println("요청 수신에 실패하였습니다.");
             }
         } catch (IOException e) {
             System.err.println("API를 요청하는 동안 오류가 발생했습니다. >>> " + e.getMessage());
