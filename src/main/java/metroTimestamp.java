@@ -27,16 +27,24 @@ public class metroTimestamp {
     }
 
     public void showUPStamp(){
-        for(train t : timeStampList_UP){
-            t.showTrain();
+        if(timeStampList_UP.size() == 0){
+            System.out.println("현재 " + this.stnName + "역의 상행열차 정보가 없습니다.");
+        } else {
+            for(train t : timeStampList_UP){
+                t.showTrain();
+            }
+            System.out.println("------------------------------\n");
         }
-        System.out.println("------------------------------\n");
     }
 
     public void showDOWNStamp(){
-        for(train t : timeStampList_DOWN){
-            t.showTrain();
+        if(timeStampList_DOWN.size() == 0){
+            System.out.println("현재 " + this.stnName + "역의 하행열차 정보가 없습니다.");
+        } else {
+            for (train t : timeStampList_DOWN) {
+                t.showTrain();
+            }
+            System.out.println("------------------------------\n");
         }
-        System.out.println("------------------------------\n");
     }
 }

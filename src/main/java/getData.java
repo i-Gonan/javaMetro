@@ -91,6 +91,9 @@ public class getData {
                 for(JsonElement up : UPList){
                     String trainID = up.getAsJsonObject().get("btrainNo").getAsString(); //열차번호
                     String destination = up.getAsJsonObject().get("bstatnNm").getAsString(); //행선지
+                    if(destination.equals("응암순환(상선)")){
+                        destination = destination.replace("(상선)", "(응암)");
+                    }
                     String nowLocation = up.getAsJsonObject().get("arvlMsg3").getAsString(); // 현재 위치
                     String arrivalTime = up.getAsJsonObject().get("arvlMsg2").getAsString(); // 도착 예정 시간
                     String Direction = up.getAsJsonObject().get("updnLine").getAsString(); // 상행값 가져오기
