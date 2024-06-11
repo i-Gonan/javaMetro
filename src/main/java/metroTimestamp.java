@@ -30,11 +30,13 @@ public class metroTimestamp {
         for(train t : timeStampList_UP){
             t.showTrain();
         }
+        System.out.println("------------------------------\n");
     }
 
     public void showDOWNStamp(){
         for(train t : timeStampList_DOWN){
             t.showTrain();
         }
+        System.out.println("------------------------------\n");
     }
 }

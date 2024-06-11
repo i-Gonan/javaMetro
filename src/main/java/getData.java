@@ -108,16 +108,16 @@ public class getData {
                 }
 
                 //저장한 상행열차 정보를 출력
-                System.out.println("********" + stnName + "역 상행열차 정보를 출력합니다.********");
+                System.out.println("\n********" + stnName + "역 상행열차 정보를 출력합니다.********");
                 Timestamps.showUPStamp();
 
 
                 //저장한 하행열차 정보를 출력
-                System.out.println("********" + stnName + "역 하행열차 정보를 출력합니다.********");
+                System.out.println("\n********" + stnName + "역 하행열차 정보를 출력합니다.********");
                 Timestamps.showDOWNStamp();
 
             } else {
-                System.out.println("디버깅 >>> 요청 수신에 실패하였습니다.");
+                System.out.println("요청 수신에 실패하였습니다.");
             }
         } catch (IOException e) {
             System.err.println("API를 요청하는 동안 오류가 발생했습니다. >>> " + e.getMessage());

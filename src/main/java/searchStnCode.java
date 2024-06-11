@@ -103,9 +103,7 @@ public class searchStnCode {
         // 열차의 현재 역, 내가 찾는 역, 호선을 입력값으로 가짐
         trainDestStn = trainDestStn.split(" ")[0];
         String trainDestStnCode = getStnCode(trainDestStn, Line);
-        System.out.println("열차의 목적지 역 코드 : " + trainDestStnCode);
         String myStnCode = getStnCode(myStn, Line);
-        System.out.println("내가 찾는 역 코드 : " + myStnCode);
         if((type.equals("상행") || type.equals("내선")) && myStnCode.compareTo(trainDestStnCode) <= 0){
             return true;
         } else if((type.equals("하행") || type.equals("외선")) && myStnCode.compareTo(trainDestStnCode) >= 0){
