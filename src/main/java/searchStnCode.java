@@ -51,11 +51,9 @@ public class searchStnCode {
     private static JsonArray stationArray = new JsonArray();
 
     private static String getStnCode(String stn, String Line) throws IOException{
-        System.out.println("1. " + stn);
         if(stn.equals("응암순환(상선)")){
             stn = "응암";
         }
-        System.out.println("2. " + stn);
         String metroAPI = readAPIKey.getAPIKey("강남");
         String apiURL = "http://openAPI.seoul.go.kr:8088/" + metroAPI + "/json/SearchInfoBySubwayNameService/1/5/" + stn;
         Request request = new Request.Builder() //요청을 보낼 객체 생성
