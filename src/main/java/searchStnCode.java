@@ -52,7 +52,14 @@ public class searchStnCode {
     private static JsonArray stationArray = new JsonArray();
 
     private static String getStnCode(String stn, String Line) throws IOException{
-        if(!StnNameEdit.getstnCodeName(stn).equals("해당사항없음")){
+        if(stn.equals("총신대입구(이수)")){
+            if(Line.equals("1004")){
+                stn = StnNameEdit.getstnCodeName("총신대입구(이수)(4)");
+            }
+            if(Line.equals("1007")){
+                stn = StnNameEdit.getstnCodeName("총신대입구(이수)(7)");
+            }
+        } else if(!StnNameEdit.getstnCodeName(stn).equals("해당사항없음")){
             stn = StnNameEdit.getstnCodeName(stn);
         }
         String metroAPI = readAPIKey.getAPIKey("강남");
