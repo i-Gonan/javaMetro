@@ -57,22 +57,16 @@ public class Main {
             LineNameCode.put("9호선", "1009");
             LineNameCode.put("9", "1009");
             LineNameCode.put("경의중앙선", "1063");
-            LineNameCode.put("경의선", "1063");
-            LineNameCode.put("중앙선", "1063");
             LineNameCode.put("경중선", "1063");
             LineNameCode.put("공항철도", "1065");
             LineNameCode.put("경춘선", "1067");
             LineNameCode.put("경춘", "1067");
             LineNameCode.put("수인분당선", "1075");
-            LineNameCode.put("수인선", "1075");
-            LineNameCode.put("분당선", "1075");
-            LineNameCode.put("수인분당", "1075");
             LineNameCode.put("신분당선", "1077");
             LineNameCode.put("우이신설선", "1092");
             LineNameCode.put("서해선", "1093");
             LineNameCode.put("경강선", "1081");
             LineNameCode.put("GTX-A", "1032");
-            LineNameCode.put("GTXA", "1032");
         }
     }
 

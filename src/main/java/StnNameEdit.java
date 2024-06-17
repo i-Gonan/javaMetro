@@ -37,6 +37,7 @@ public class StnNameEdit {
         stnNameMap_forCode.put("대모산", "대모산입구");
         stnNameMap_forCode.put("몽촌토성(평화의문)", "몽촌토성");
         stnNameMap_forCode.put("화랑대(서울여대입구)", "화랑대");
+        stnNameMap_forCode.put("서울", "서울역");
     }
 
     public static String getstnCodeName(String stnName){
