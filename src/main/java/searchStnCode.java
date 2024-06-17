@@ -29,8 +29,8 @@ public class searchStnCode {
         codeToLine.put("1008", "08호선");
         codeToLine.put("1009", "09호선");
         codeToLine.put("1063", "경의선");
-        codeToLine.put("1065", "경춘선");
-        codeToLine.put("1067", "공항철도");
+        codeToLine.put("1065", "공항철도");
+        codeToLine.put("1067", "경춘선");
         codeToLine.put("1075", "수인분당선");
         codeToLine.put("1077", "신분당선");
         codeToLine.put("1092", "우이신설경전철");
@@ -52,6 +52,11 @@ public class searchStnCode {
     private static JsonArray stationArray = new JsonArray();
 
     private static String getStnCode(String stn, String Line) throws IOException{
+        if(stn.contains(" (급행)")){
+            stn = stn.replace(" (급행)", "");
+        } else if(stn.contains(" (특급)")){
+            stn = stn.replace(" (특급)", "");
+        }
         if(stn.equals("총신대입구(이수)")){
             if(Line.equals("1004")){
                 stn = StnNameEdit.getstnCodeName("총신대입구(이수)(4)");
@@ -115,9 +120,9 @@ public class searchStnCode {
         trainDestStn = trainDestStn.split(" ")[0];
         String trainDestStnCode = getStnCode(trainDestStn, Line);
         String myStnCode = getStnCode(myStn, Line);
-        if((type.equals("상행") || type.equals("내선")) && myStnCode.compareTo(Objects.requireNonNull(trainDestStnCode)) <= 0){
+        if((type.equals("상행") || type.equals("내선")) && myStnCode.compareTo(trainDestStnCode) <= 0){
             return true;
-        } else if((type.equals("하행") || type.equals("외선")) && myStnCode.compareTo(Objects.requireNonNull(trainDestStnCode)) >= 0){
+        } else if((type.equals("하행") || type.equals("외선")) && myStnCode.compareTo(trainDestStnCode) >= 0){
             return true;
         }else{
             return false;
