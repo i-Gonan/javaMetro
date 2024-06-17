@@ -51,9 +51,9 @@ public class getData {
                                     (searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN))){
                                 //당역종착 & 이 역에 오기전에 종착하는 열차는 포함하지 않음
                             } else {
-                                if(UPList.size() >= 2){
-                                    //각 방향별로 최대 2개의 열차를 보여줄 것이기 때문에 2개를 넘으면 작업 종료
-                                    break;
+                                if(UPList.size() >= 3){
+                                    //각 방향별로 최대 3개의 열차를 보여줄 것이기 때문에 2개를 넘으면 작업 종료
+                                    //break;
                                 }
                                 else {
                                     UPList.add(tA);
@@ -64,9 +64,9 @@ public class getData {
                                     (searchStnCode.isBeforeStn(tA.getAsJsonObject().get("bstatnNm").getAsString(), Timestamps.getStnName(), Timestamps.getStnLine(), UPDOWN))){
                                 //당역종착 & 이 역에 오기전에 종착하는 열차는 포함하지 않음
                             } else {
-                                if(DOWNList.size() >= 2){
+                                if(DOWNList.size() >= 3){
                                     // 역시 똑같이 아무것도 안하고 작업 종료
-                                    break;
+                                    //break;
                                 } else {
                                     DOWNList.add(tA);
                                 }
