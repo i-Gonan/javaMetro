@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,8 +30,8 @@ public class searchStnCode {
         codeToLine.put("1008", "08호선");
         codeToLine.put("1009", "09호선");
         codeToLine.put("1063", "경의선");
-        codeToLine.put("1067", "경춘선");
         codeToLine.put("1065", "공항철도");
+        codeToLine.put("1067", "경춘선");
         codeToLine.put("1075", "수인분당선");
         codeToLine.put("1077", "신분당선");
         codeToLine.put("1092", "우이신설경전철");

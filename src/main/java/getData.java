@@ -1,3 +1,4 @@
+
 import com.google.gson.*;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -52,7 +53,7 @@ public class getData {
                                 //당역종착 & 이 역에 오기전에 종착하는 열차는 포함하지 않음
                             } else {
                                 if(UPList.size() >= 3){
-                                    //각 방향별로 최대 3개의 열차를 보여줄 것이기 때문에 2개를 넘으면 작업 종료
+                                    //각 방향별로 최대 2개의 열차를 보여줄 것이기 때문에 2개를 넘으면 작업 종료
                                     //break;
                                 }
                                 else {

@@ -1,3 +1,4 @@
+
 public class train {
     private String destination, nowLocation, arrivalTime, target_Stn, direction, trainID;
 

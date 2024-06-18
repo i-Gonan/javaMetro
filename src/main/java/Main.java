@@ -38,29 +38,30 @@ public class Main {
 
     public static void setStnCode(){
         for(int i = 0; i < 19; i++){
-            LineNameCode.put("1호선", "1001");
             LineNameCode.put("1", "1001");
-            LineNameCode.put("2호선", "1002");
+            LineNameCode.put("1호선", "1001");
             LineNameCode.put("2", "1002");
-            LineNameCode.put("3호선", "1003");
+            LineNameCode.put("2호선", "1002");
             LineNameCode.put("3", "1003");
-            LineNameCode.put("4호선", "1004");
+            LineNameCode.put("3호선", "1003");
             LineNameCode.put("4", "1004");
-            LineNameCode.put("5호선", "1005");
+            LineNameCode.put("4호선", "1004");
             LineNameCode.put("5", "1005");
-            LineNameCode.put("6호선", "1006");
+            LineNameCode.put("5호선", "1005");
             LineNameCode.put("6", "1006");
-            LineNameCode.put("7호선", "1007");
+            LineNameCode.put("6호선", "1006");
             LineNameCode.put("7", "1007");
-            LineNameCode.put("8호선", "1008");
+            LineNameCode.put("7호선", "1007");
             LineNameCode.put("8", "1008");
-            LineNameCode.put("9호선", "1009");
+            LineNameCode.put("8호선", "1008");
             LineNameCode.put("9", "1009");
+            LineNameCode.put("9호선", "1009");
             LineNameCode.put("경의중앙선", "1063");
+            LineNameCode.put("경의선", "1063");
+            LineNameCode.put("중앙선", "1063");
             LineNameCode.put("경중선", "1063");
             LineNameCode.put("공항철도", "1065");
             LineNameCode.put("경춘선", "1067");
-            LineNameCode.put("경춘", "1067");
             LineNameCode.put("수인분당선", "1075");
             LineNameCode.put("신분당선", "1077");
             LineNameCode.put("우이신설선", "1092");
