@@ -25,7 +25,6 @@ public class readAPIKey {
 
         try (BufferedReader APIgetter = new BufferedReader(new FileReader("src/main/resources/API.txt"))) {
             // 파일을 읽어오기 위해서 BufferedReader 객체 생성
-            //String API;
             metroAPI = APIgetter.readLine();
             while(metroAPI != null){
                 boolean isValidKey = searchAPI.isValidAPI(metroAPI, testStnName);
