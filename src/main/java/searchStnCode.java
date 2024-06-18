@@ -52,11 +52,6 @@ public class searchStnCode {
     private static JsonArray stationArray = new JsonArray();
 
     private static String getStnCode(String stn, String Line) throws IOException{
-        if(stn.contains(" (급행)")){
-            stn = stn.replace(" (급행)", "");
-        } else if(stn.contains(" (특급)")){
-            stn = stn.replace(" (특급)", "");
-        }
         if(stn.equals("총신대입구(이수)")){
             if(Line.equals("1004")){
                 stn = StnNameEdit.getstnCodeName("총신대입구(이수)(4)");
