@@ -16,6 +16,8 @@ import okhttp3.ResponseBody;
 public class searchStnCode {
 
     private static Map<String, String> codeToLine = new HashMap<>();
+    private static final OkHttpClient client = new OkHttpClient();
+    private static JsonArray stationArray = new JsonArray();
 
     public static void initMap(){
         codeToLine.put("1001", "01호선");
@@ -47,8 +49,7 @@ public class searchStnCode {
         return null;
     }
 
-    private static final OkHttpClient client = new OkHttpClient();
-    private static JsonArray stationArray = new JsonArray();
+
 
     private static String getStnCode(String stn, String Line) throws IOException{
         if(stn.equals("총신대입구(이수)")){
