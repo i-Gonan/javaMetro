@@ -18,6 +18,7 @@ public class StnNameEdit {
         stnNameMap.put("서울역", "서울");
         stnNameMap.put("숭실대입구", "숭실대입구(살피재)");
         stnNameMap.put("군자", "군자(능동)");
+        stnNameMap.put("대흥", "대흥(서강대앞)");
     }
 
     public static String getstnName(String stnName){
@@ -42,6 +43,7 @@ public class StnNameEdit {
         stnNameMap_forCode.put("서울", "서울역");
         stnNameMap_forCode.put("숭실대입구(살피재)", "숭실대입구");
         stnNameMap_forCode.put("군자(능동)", "군자");
+        stnNameMap_forCode.put("대흥(서강대앞)", "대흥");
     }
 
     public static String getstnCodeName(String stnName){

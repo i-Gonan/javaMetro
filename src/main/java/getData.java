@@ -9,7 +9,6 @@ import java.io.IOException;
 public class getData {
     private static final OkHttpClient client = new OkHttpClient();
     private static JsonArray trainArray = new JsonArray();
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static void getMetroData(String apiUrl, metroTimestamp Timestamps) throws IOException {
         Request request = new Request.Builder() //요청을 보낼 객체 생성
